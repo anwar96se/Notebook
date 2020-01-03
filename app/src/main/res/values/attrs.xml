@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NotebookView">
+        <attr name="android:layout_width" />
+        <attr name="android:layout_height" />
+        <attr name="nv_start_color" format="color" />
+        <attr name="nv_end_color" format="color" />
+        <attr name="nv_angle">
+            <flag name="angle_0" value="0" />
+            <flag name="angle_90" value="90" />
+            <flag name="angle_180" value="180" />
+            <flag name="angle_270" value="270" />
+        </attr>
+    </declare-styleable>
+</resources>
