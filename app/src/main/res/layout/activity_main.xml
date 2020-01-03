@@ -13,8 +13,8 @@
         android:layout_margin="10dp"
         android:text="Hello World!"
         app:nv_angle="angle_0"
-        app:nv_start_color="#ff0000"
-        app:nv_end_color="#0000ff"/>
+        app:nv_end_color="#0000ff"
+        app:nv_start_color="#ff0000" />
 
     <se.anwar.notebook.NotebookView
         android:layout_width="wrap_content"
@@ -22,8 +22,8 @@
         android:layout_margin="10dp"
         android:text="Hello World!"
         app:nv_angle="angle_90"
-        app:nv_start_color="#ff0000"
-        app:nv_end_color="#0000ff"/>
+        app:nv_end_color="#0000ff"
+        app:nv_start_color="#ff0000" />
 
     <se.anwar.notebook.NotebookView
         android:layout_width="wrap_content"
@@ -31,16 +31,13 @@
         android:layout_margin="10dp"
         android:text="Hello World!"
         app:nv_angle="angle_180"
-        app:nv_start_color="#ff0000"
-        app:nv_end_color="#0000ff"/>
+        app:nv_end_color="#0000ff"
+        app:nv_start_color="#ff0000" />
 
-    <se.anwar.notebook.NotebookView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Hello World!"
-        app:nv_angle="angle_270"
-        app:nv_start_color="#ff0000"
-        app:nv_end_color="#0000ff"/>
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp" />
 
 </LinearLayout>

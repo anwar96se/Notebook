@@ -17,10 +17,6 @@ import androidx.annotation.Nullable;
 /**
  * Created by anwar_se on 1/3/2020.
  * Email: anwar.dev.96@gmail.com
- *
- * @attr ref se.anwar.notebook.R.styleable#NotebookView_nv_start_color
- * @attr ref se.anwar.notebook.R.styleable#NotebookView_nv_end_color
- * @attr ref se.anwar.notebook.R.styleable#NotebookView_nv_angle
  */
 public class NotebookView extends View {
 
@@ -28,10 +24,6 @@ public class NotebookView extends View {
 
     public static final int DEF_WIDTH = 230;
     public static final int DEF_HEIGHT = 300;
-    public static final int ANGLE_0_DEG = 0;
-    public static final int ANGLE_90_DEG = 90;
-    public static final int ANGLE_180_DEG = 180;
-    public static final int ANGLE_270_DEG = 270;
 
     //endregion
 
@@ -41,7 +33,7 @@ public class NotebookView extends View {
     private float height = DEF_HEIGHT;
     private int startColor;
     private int endColor;
-    private int angle;
+    private Angle angle = Angle.ANGLE_0;
 
     private Paint bgPaint, vPaint, textPaint;
     private Path bgPath;
@@ -76,7 +68,7 @@ public class NotebookView extends View {
         initLayoutDimension(layoutWidth, layoutHeight);
         setStartColor(a.getColor(R.styleable.NotebookView_nv_start_color, Color.WHITE));
         setEndColor(a.getColor(R.styleable.NotebookView_nv_end_color, Color.BLACK));
-        setAngle(a.getInt(R.styleable.NotebookView_nv_angle, ANGLE_90_DEG));
+        setAngle(a.getInt(R.styleable.NotebookView_nv_angle, 0));
 
         a.recycle();
 
@@ -155,29 +147,35 @@ public class NotebookView extends View {
 
     }
 
+    @Override
+    public void invalidate() {
+        initDraw();
+        super.invalidate();
+    }
+
     private LinearGradient getGradient() {
 
         RectF points = new RectF();
         switch (getAngle()) {
-            case ANGLE_90_DEG:
+            case ANGLE_90:
                 points.left = 0;
                 points.top = 0;
                 points.right = width;
                 points.bottom = 0;
                 break;
-            case ANGLE_180_DEG:
+            case ANGLE_180:
                 points.left = 0;
                 points.top = 0;
                 points.right = 0;
                 points.bottom = height;
                 break;
-            case ANGLE_270_DEG:
+            case ANGLE_270:
                 points.left = width;
                 points.top = 0;
                 points.right = 0;
                 points.bottom = 0;
                 break;
-            case ANGLE_0_DEG:
+            case ANGLE_0:
             default:
                 points.left = 0;
                 points.top = height;
@@ -199,6 +197,7 @@ public class NotebookView extends View {
 
     public void setStartColor(int startColor) {
         this.startColor = startColor;
+        invalidate();
     }
 
     public int getEndColor() {
@@ -207,14 +206,53 @@ public class NotebookView extends View {
 
     public void setEndColor(int endColor) {
         this.endColor = endColor;
+        invalidate();
     }
 
-    public int getAngle() {
+    public Angle getAngle() {
         return angle;
     }
 
-    public void setAngle(int angle) {
+    private void setAngle(int angle) {
+        switch (angle) {
+            case 90:
+                setAngle(Angle.ANGLE_90);
+                break;
+            case 180:
+                setAngle(Angle.ANGLE_180);
+                break;
+            case 270:
+                setAngle(Angle.ANGLE_270);
+                break;
+            case 0:
+            default:
+                setAngle(Angle.ANGLE_0);
+        }
+    }
+
+    public void setAngle(Angle angle) {
         this.angle = angle;
+        invalidate();
+    }
+
+    //endregion
+
+    //region Angle
+
+    public enum Angle {
+
+        ANGLE_0(0), ANGLE_90(90), ANGLE_180(180), ANGLE_270(270);
+
+        int value;
+
+        Angle(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
     }
 
     //endregion

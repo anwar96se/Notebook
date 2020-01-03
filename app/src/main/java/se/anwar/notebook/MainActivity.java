@@ -1,6 +1,8 @@
 package se.anwar.notebook;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        RelativeLayout container = findViewById(R.id.container);
+        NotebookView nbView = new NotebookView(this);
+        nbView.setStartColor(Color.RED);
+        nbView.setEndColor(Color.BLUE);
+        nbView.setAngle(NotebookView.Angle.ANGLE_270);
+        container.addView(nbView);
+
+
+
 
     }
 }
